@@ -75,9 +75,9 @@ class TruthWindow(tk.Tk):
         table.append(row)
         truth_tables = [list(truth_table(expression, props)) for expression in expressions]
         for i in range(len(truth_tables[0])):
-            row = [truthy(val) for val in truth_tables[0][i][0]]
+            row = [truthy(val) for val in truth_tables[0][::-1][i][0]]
             for j in range(len(expressions)):
-                row.append(str(truth_tables[j][i][1]))
+                row.append(str(truth_tables[j][::-1][i][1]))
             table.append(row)
         return table
 
