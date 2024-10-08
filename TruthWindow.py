@@ -61,7 +61,8 @@ class TruthWindow(tk.Tk):
 
 
     def create_table(self):
-        expressions = [parse_expr(expr.get()) for expr in self.input_boxes]
+        input_strings = [string.get() for string in self.input_boxes]
+        expressions = [parse_expr(string) for string in input_strings if string]
         props = list(set.union(*[exp.atoms() for exp in expressions]))
 
         def truthy(i):
