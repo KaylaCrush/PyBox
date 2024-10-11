@@ -1,15 +1,25 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import font as tkFont
 from sympy import *
 from sympy.logic.boolalg import truth_table
 
 class TruthWindow(tk.Tk):
     def __init__(self):
         super().__init__()  # Initialize the Tk object
+
+
         self.title("Logic Expressions")
         # self.geometry("400x300")
         self.frame=ttk.Frame(self,padding=(4,4,4,4))
         self.frame.grid(sticky='nsew')
+        default_font = tkFont.Font(size=14)
+        style = ttk.Style()
+
+        style.configure("TButton", font=default_font)  # For ttk.Button widgets
+        style.configure("TLabel", font=default_font)   # For ttk.Label widgets
+        style.configure("Entry", font=default_font)
+        self.option_add("*Font",default_font)
 
         # Store entry boxes for logical expressions
         self.input_boxes = []
@@ -33,7 +43,7 @@ class TruthWindow(tk.Tk):
         """Add a new entry widget for logical expression input."""
         row = len(self.input_boxes)
 
-        exp_entry = ttk.Entry(self.frame, width=20)
+        exp_entry = ttk.Entry(self.frame, width=20,)
         if row == 0:
             exp_entry.focus_set()
         exp_entry.grid(row=row, column=2, padx=5,pady=2)
